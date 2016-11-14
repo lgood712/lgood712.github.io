@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Project 2 | Info3300 - sg685, lng26, wt265</title>
+        <link rel="stylesheet" href="css/main.css" />
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="http://d3js.org/topojson.v1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script type="text/javascript" src="scripts/helper.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat">
+	<head>
+	<body>
+        <script type="text/javascript" src="data/data_dash.js"></script>
+
+        <h1 id="head">One Race - Every 100m Medalist Ever</h1>
+
+        <div id="overview" class="textSection">
+
+            <p>Using the athlete's average speeds, we determined how far behind each Olympic medalist would be if once the fastest medalist reached the finsh line. Usain Bolt is the fastest male with a time of <b>9.63s</b> and Florence Joyner is the fastest female with a time of <b>10.54s</b>. The results are shown below.</p>
+
+            <p><b>Add your time below to see how you compare!</b> Minimum is 10s and maximum is 23s.</p>
+
+        </div>
+
+        <!-- Sprint Code -->
+        <div id="g">
+            <div id="canvas" style="width:1200px; margin:auto"></div>
+        </div>
+        <script type="text/javascript" src="scripts/race.js"></script>
+
+        <div id="canvas1"></div>
+        <div id="canvas2"></div>
+
+        <!-- Graph Code -->
+        <script>
+            var generateGraph = function (divID, dataSet, title, xAxisText, yAxisText, graphNum, xScale, yScale, rectColor, arrowList) {
+                preProcessing(dataSet);
+                var svg = generateFigure(divID, xScale, yScale, title, xAxisText, yAxisText, graphNum);
+
+                makeCirclesFromData(dataSet, svg, xScale, yScale);
+                createCountryDivs(divID, 50, 140, svg, xScale, yScale, graphNum, rectColor);
+                createKey(divID, 110, 100, svg, xScale, graphNum);
+                createExtraText(svg);
+                createArrow(svg, xScale, yScale, arrowList);
+            }
+
+            generateGraph("#canvas1", male_sprinters, "Usain Bolt vs. Men Olympic Sprinters", "Meters behind Bolt", "Year", 0, xScale1, yScale1, "#F0F8FF", arrowList1);
+            generateGraph("#canvas2", female_sprinters, "Florence Joyner vs. Women Olympic Sprinters", "Meters behind Joyner", "Year", 1, xScale2, yScale2, "#FFECEF", arrowList2);
+        </script>
+
+        <!--
+        <div class="contain">
+            <div class="mapTitle">
+
+                <h2 id="head">Map of the Medals</h2>
+
+                <p><b>Hover over a country for more information.</b> Countries who did not win medals or did not participate in the Olympics do not contain information.</p>
+
+            </div>
+        </div>
+
+        Map Code (Purposely excluded)
+        <div id="map"></div>
+        <script type="text/javascript" src="scripts/countryMap.js"></script>
+
+
+        <!-- Pie Chart Code (Purposely excluded)
+        <div id="extra" style="width:150px; height:300px; float:left;"></div>
+        <div id="pie_canvas" style="width:500px; float:left;"></div>
+        <div id="pie_canvas2" style="width:500px; float:left;"></div>
+        <script type="text/javascript" src="scripts/pie.js"></script>-->
+
+         <p>The majority of data for the above visualizations was acquired from <a href="http://www.olympic.org/">Olympic</a>, <a href="http://www.sports-reference.com/">Sports Reference</a>, and <a href="http://www.wikipedia.com/">Wikipedia</a>.</p>
+
+	</body>
+</html>
