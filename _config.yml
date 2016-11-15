@@ -1,0 +1,3 @@
+name: Luke Good
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
